@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: meu_postgres
+    environment:
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: senha
+      POSTGRES_DB: gam3r.store
+    ports:
+      - "5432:5432" # Porta mapeada para acesso externo
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - rede_interna
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: meu_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: visofo@gmail.com # Email padrão para login no pgAdmin
+      PGADMIN_DEFAULT_PASSWORD: visofo@19 # Senha padrão para login no pgAdmin
+    ports:
+      - "8080:80" # Porta para acessar o pgAdmin via navegador
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./pgadmin_servers.json:/pgadmin4/servers.json # Montar o arquivo JSON
+    networks:
+      - rede_interna
+
+volumes:
+  db_data:
+  pgadmin_data:
+
+networks:
+  rede_interna:
+    driver: bridge

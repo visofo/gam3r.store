@@ -1,0 +1,15 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Meu PostgreSQL",
+      "Group": "Servers",
+      "Host": "meu_postgres",
+      "Port": 5432,
+      "MaintenanceDB": "postgres",
+      "Username": "usuario",
+      "Password": "senha",
+      "SSLMode": "prefer",
+      "Schemas": ["public", "custom_schema"]
+    }
+  }
+}
